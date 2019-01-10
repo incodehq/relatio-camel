@@ -64,6 +64,8 @@
     <properties>
         <revision>1.16.2-SNAPSHOT</revision>
 
+        <relatio-canonical.version>2.0.0-M1.20190107-1559-b7dbd7ef</relatio-canonical.version>
+
         <isis.version>1.16.2.20180709-1350-5d9f4f7c</isis.version>
 
         <!-- NB: also update the parent of this pom.  -->
@@ -72,9 +74,6 @@
 
         <lombok.version>1.18.2</lombok.version>
         <assertj-core.version>3.6.0</assertj-core.version>
-
-        <relatio-canonical.version>2.0.0-M1.20180808-1244-df59937d</relatio-canonical.version>
-
 
         <activemq-web.version>5.14.3</activemq-web.version>
         <spring.version>4.1.9.RELEASE</spring.version>
@@ -277,6 +276,12 @@
         -->
 
         <dependency>
+            <groupId>org.incode.eurocommercial</groupId>
+            <artifactId>relatio-canonical</artifactId>
+            <version>${relatio-canonical.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.isis.core</groupId>
             <artifactId>isis-core-applib</artifactId>
         </dependency>
@@ -304,12 +309,6 @@
         <dependency>
             <groupId>org.isisaddons.module.publishmq</groupId>
             <artifactId>isis-module-publishmq-dom-servicespi</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.incode.eurocommercial</groupId>
-            <artifactId>relatio-canonical</artifactId>
-            <version>${relatio-canonical.version}</version>
         </dependency>
 
         <dependency>

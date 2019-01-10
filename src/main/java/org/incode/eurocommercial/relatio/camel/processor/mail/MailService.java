@@ -16,19 +16,16 @@
  */
 package org.incode.eurocommercial.relatio.camel.processor.mail;
 
-import java.io.IOException;
-
 import com.ecwid.maleorang.MailchimpClient;
 import com.ecwid.maleorang.MailchimpException;
 import com.ecwid.maleorang.MailchimpObject;
 import com.ecwid.maleorang.method.v3_0.lists.members.EditMemberMethod;
 import com.ecwid.maleorang.method.v3_0.lists.members.MemberInfo;
 import com.google.common.base.Strings;
-
-import org.incode.eurocommercial.ecpcrm.canonical.center.v1.CenterDto;
-import org.incode.eurocommercial.ecpcrm.canonical.user.v1.UserDto;
-
 import lombok.Setter;
+import org.incode.eurocommercial.relatio.canonical.profile.v1.ProfileDto;
+
+import java.io.IOException;
 
 public class MailService {
 
@@ -51,17 +48,25 @@ public class MailService {
     }
 
 
-    private MemberInfo createOrUpdate(String email, String firstName, String lastName, String listId, String status) {
+    private MemberInfo createOrUpdate(ProfileDto profileDto, String listId, String status) {
         if (client == null) {
             return null;
         }
 
-        EditMemberMethod.CreateOrUpdate method = new EditMemberMethod.CreateOrUpdate(listId, email);
+        EditMemberMethod.CreateOrUpdate method = new EditMemberMethod.CreateOrUpdate(listId, profileDto.getEmailAccount());
+
 
         method.status = status;
         method.merge_fields = new MailchimpObject();
-        method.merge_fields.mapping.put("FNAME", firstName);
-        method.merge_fields.mapping.put("LNAME", lastName);
+        method.merge_fields.mapping.put("FNAME", profileDto.getFirstName());
+        method.merge_fields.mapping.put("LNAME", profileDto.getLastName());
+        method.merge_fields.mapping.put("dateOfBirth", profileDto.getDateOfBirth().toString());
+        method.merge_fields.mapping.put("approximateDateOfBirth", profileDto.getApproximateDateOfBirth().toString());
+//        method.merge_fields.mapping.put("gender", profileDto.getGender().value());
+        method.merge_fields.mapping.put("cellPhoneNumber", profileDto.getCellPhoneNumber());
+        method.merge_fields.mapping.put("faceBookAccount", profileDto.getFacebookAccount());
+        method.merge_fields.mapping.put("privacyConsent", booleanToStatus(profileDto.isPrivacyConsent()));
+        method.merge_fields.mapping.put("marketingConsent", status);
 
         try {
             return client.execute(method);
@@ -71,23 +76,16 @@ public class MailService {
         }
     }
 
-    private MemberInfo createOrUpdate(UserDto user, CenterDto center, String status) {
-        return createOrUpdate(user.getEmail(), user.getFirstName(), user.getLastName(), center.getMailchimpListId(), status);
+
+    public MemberInfo propogateProfile(ProfileDto profileDto){
+        if(profileDto.isMarketingConsent()) {
+            return createOrUpdate(profileDto, "af6fb1a850", "subscribed");
+        }else {
+            return createOrUpdate(profileDto, "af6fb1a850", "unsubscribed");
+        }
     }
 
-    public MemberInfo subscribeUser(String email, String firstName, String lastName, String listId) {
-        return createOrUpdate(email, firstName, lastName, listId, "subscribed");
-    }
-
-    public MemberInfo unsubscribeUser(String email, String firstName, String lastName, String listId) {
-        return createOrUpdate(email, firstName, lastName, listId, "unsubscribed");
-    }
-
-    public MemberInfo subscribeUser(UserDto user, CenterDto center) {
-        return createOrUpdate(user, center, "subscribed");
-    }
-
-    public MemberInfo unsubscribeUser(UserDto user, CenterDto center) {
-        return createOrUpdate(user, center, "unsubscribed");
+    private String booleanToStatus(boolean bool){
+        return bool ? "true" : "false";
     }
 }

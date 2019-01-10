@@ -20,7 +20,7 @@
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
   http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
 
-    <bean class="org.incode.eurocommercial.ecpcrm.camel.webapp.PropertyPlaceholderConfigurerUsingSpringOpts">
+    <bean class="org.incode.eurocommercial.relatio.camel.webapp.PropertyPlaceholderConfigurerUsingSpringOpts">
         <property name="locations">
             <list>
                 <value>${spring.config.file}</value>

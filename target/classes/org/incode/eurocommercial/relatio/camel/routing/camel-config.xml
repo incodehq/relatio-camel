@@ -36,46 +36,12 @@
             <camel:choice>
                 <camel:when>
                     <camel:simple>
-                        ${header.ixn[execution$memberIdentifier]} == 'org.incode.eurocommercial.ecpcrm.module.loyaltycards.dom.user.User#subscribeToPromotionalEmails()'
+                        ${header.ixn[execution$memberIdentifier]} == 'org.incode.eurocommercial.relatio.dom.profile.ProfileMenu#updateMailChimpProfiles()'
                     </camel:simple>
-                    <camel:process ref="fetchUserFromSubscribeAction"/>
-                    <camel:process ref="fetchCenterFromUser"/>
-                    <camel:process ref="subscribeToMailChimpMailingList"/>
-                </camel:when>
-
-                <camel:when>
-                    <camel:simple>
-                        ${header.ixn[execution$memberIdentifier]} == 'org.incode.eurocommercial.ecpcrm.module.loyaltycards.dom.user.User#unsubscribeFromPromotionalEmails()'
-                    </camel:simple>
-                    <camel:process ref="fetchUserFromSubscribeAction"/>
-                    <camel:process ref="fetchCenterFromUser"/>
-                    <camel:process ref="unsubscribeFromMailChimpMailingList"/>
-                </camel:when>
-
-                <camel:when>
-                    <camel:simple>
-                        ${header.ixn[execution$memberIdentifier]} == 'org.incode.eurocommercial.ecpcrm.module.loyaltycards.menu.UserMenu#newUser()'
-                    </camel:simple>
-                    <camel:process ref="fetchUserFromNewUser"/>
-                    <camel:process ref="fetchCenterFromUser"/>
-                    <camel:process ref="addUserToMailingList"/>
-                </camel:when>
-
-                <camel:when>
-                    <camel:simple>
-                        ${header.ixn[execution$memberIdentifier]} == 'org.incode.eurocommercial.ecpcrm.module.loyaltycards.dom.card.request.CardRequestRepository#findOrCreate()'
-                    </camel:simple>
-                    <camel:process ref="cardRequestCreated"/>
+                    <camel:process ref="addProfileToMailingList"/>
                 </camel:when>
 
             </camel:choice>
-
-            <camel:to uri="stream:out"/>
-        </route>
-
-        <route id="mailchimpWebhookRoute">
-            <from uri="servlet:///mailchimp-webhook"/>
-            <process ref="propagateUnsubscriptionToCrm"/>
 
             <camel:to uri="stream:out"/>
         </route>
@@ -100,7 +66,7 @@
     </bean>
 
     <bean id="exceptionLogger"
-          class="org.incode.eurocommercial.ecpcrm.camel.processor.exceptions.ExceptionLogger">
+          class="org.incode.eurocommercial.relatio.camel.processor.exceptions.ExceptionLogger">
         <property name="statusMessageClient"
                   ref="statusMessageClient"/>
     </bean>
@@ -123,78 +89,68 @@
 
     <bean id="fetchFromRestfulObjects" abstract="true">
         <property name="base"
-                  value="${ecpcrmRo.base}"/>
+                  value="${relatioRo.base}"/>
         <property name="username"
-                  value="${ecpcrmRo.username}"/>
+                  value="${relatioRo.username}"/>
         <property name="password"
-                  value="${ecpcrmRo.password}"/>
+                  value="${relatioRo.password}"/>
     </bean>
 
     <bean id="fetchUserFromSubscribeAction"
           parent="fetchFromRestfulObjects"
-          class="org.incode.eurocommercial.ecpcrm.camel.processor.enrich.FetchUserFromSubscribeAction"
-          init-method="init">
-    </bean>
-
-    <bean id="fetchUserFromNewUser"
-          class="org.incode.eurocommercial.ecpcrm.camel.processor.enrich.FetchUserFromNewUser">
-    </bean>
-
-    <bean id="fetchCenterFromUser"
-          parent="fetchFromRestfulObjects"
-          class="org.incode.eurocommercial.ecpcrm.camel.processor.enrich.FetchCenterFromUser"
+          class="org.incode.eurocommercial.relatio.camel.processor.enrich.FetchProfileFromSync"
           init-method="init">
     </bean>
 
     <!---============ Subscriptions ============-->
 
-    <bean id="subscribeToMailChimpMailingList"
-          class="org.incode.eurocommercial.ecpcrm.camel.processor.mail.SubscribeToMailChimpMailingList">
+    <bean id="s"
+          class="org.incode.eurocommercial.relatio.camel.processor.mail.SubscribeToMailChimpMailingList">
     </bean>
 
     <bean id="unsubscribeFromMailChimpMailingList"
-          class="org.incode.eurocommercial.ecpcrm.camel.processor.mail.UnsubscribeFromMailChimpMailingList">
+          class="org.incode.eurocommercial.relatio.camel.processor.mail.UnsubscribeFromMailChimpMailingList">
     </bean>
 
     <bean id="addUserToMailingList"
-          class="org.incode.eurocommercial.ecpcrm.camel.processor.mail.AddUserToMailingList">
+          class="org.incode.eurocommercial.relatio.camel.processor.mail.AddProfileToMailingList">
     </bean>
 
     <bean id="propagateUnsubscriptionToCrm"
-          class="org.incode.eurocommercial.ecpcrm.camel.processor.mail.PropagateUnsubscriptionToCrm">
+          class="org.incode.eurocommercial.relatio.camel.processor.mail.PropagateUnsubscriptionToCrm">
     </bean>
 
     <!---============ Transactional ============-->
 
     <bean id="cardRequestCreated"
-          class="org.incode.eurocommercial.ecpcrm.camel.processor.mail.transactional.CardRequestCreated">
+          class="org.incode.eurocommercial.relatio.camel.processor.mail.transactional.CardRequestCreated">
     </bean>
 
     <!---============== Services ===============-->
 
     <bean id="mailService"
-          class="org.incode.eurocommercial.ecpcrm.camel.processor.mail.MailService"
+          class="org.incode.eurocommercial.relatio.camel.processor.mail.MailService"
           init-method="init"
           destroy-method="tearDown">
         <property name="apiKey" value="${mailchimp.apiKey}"/>
     </bean>
 
     <bean id="transactionalMailService"
-          class="org.incode.eurocommercial.ecpcrm.camel.processor.mail.transactional.TransactionalMailService"
+          class="org.incode.eurocommercial.relatio.camel.processor.mail.transactional.TransactionalMailService"
           init-method="init"
           destroy-method="tearDown">
         <property name="apiKey" value="${mandrill.apiKey}"/>
     </bean>
 
     <bean id="enrichmentService"
-          class="org.incode.eurocommercial.ecpcrm.camel.processor.enrich.EnrichmentService"
+          class="org.incode.eurocommercial.relatio.camel.processor.enrich.EnrichmentService"
           init-method="init">
         <property name="base"
-                  value="${ecpcrmRo.base}"/>
+                  value="${relatioRo.base}"/>
         <property name="username"
-                  value="${ecpcrmRo.username}"/>
+                  value="${relatioRo.username}"/>
         <property name="password"
-                  value="${ecpcrmRo.password}"/>
+                  value="${relatioRo.password}"/>
     </bean>
 
 </beans>

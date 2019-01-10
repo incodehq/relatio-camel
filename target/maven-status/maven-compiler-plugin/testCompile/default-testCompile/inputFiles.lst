@@ -1,5 +1,4 @@
-/Users/marcus/repos/ecp/github/ecpcrm-camel/src/test/java/org/incode/eurocommercial/ecpcrm/camel/webapp/Dto.java
-/Users/marcus/repos/ecp/github/ecpcrm-camel/src/test/java/org/incode/eurocommercial/ecpcrm/camel/processor/E2e_Test.java
-/Users/marcus/repos/ecp/github/ecpcrm-camel/src/test/java/org/incode/eurocommercial/ecpcrm/camel/webapp/MyFilterTest.java
-/Users/marcus/repos/ecp/github/ecpcrm-camel/src/test/java/org/incode/eurocommercial/ecpcrm/camel/processor/ProcessorAbstract_Test.java
-/Users/marcus/repos/ecp/github/ecpcrm-camel/src/test/java/org/incode/eurocommercial/ecpcrm/camel/processor/mail/transactional/TransactionalMailServiceTest.java
+/Users/marcus/repos/ecp/github/relatio-camel/src/test/java/org/incode/eurocommercial/relatio/camel/webapp/MyFilterTest.java
+/Users/marcus/repos/ecp/github/relatio-camel/src/test/java/org/incode/eurocommercial/relatio/camel/webapp/Dto.java
+/Users/marcus/repos/ecp/github/relatio-camel/src/test/java/org/incode/eurocommercial/relatio/camel/processor/E2e_Test.java
+/Users/marcus/repos/ecp/github/relatio-camel/src/test/java/org/incode/eurocommercial/relatio/camel/processor/ProcessorAbstract_Test.java

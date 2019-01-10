@@ -7,6 +7,7 @@ import lombok.Getter;
  *
  * Inspired by the HTTP status codes.
  */
+
 public enum StatusMessageStatus {
 
     NO_PARTY_IN_CODA(-404),

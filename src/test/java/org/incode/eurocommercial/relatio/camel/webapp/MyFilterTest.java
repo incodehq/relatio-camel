@@ -21,7 +21,7 @@ import org.incode.eurocommercial.relatio.camel.processor.ProcessorAbstract;
 
 @RunWith(CamelSpringJUnit4ClassRunner.class)
 @BootstrapWith(CamelTestContextBootstrapper.class)
-@ContextConfiguration({"classpath:org/incode/eurocommercial/ecpcrm/camel/webapp/MyFilterTest-context.xml"})
+@ContextConfiguration({"classpath:org/incode/eurocommercial/relatio/camel/webapp/MyFilterTest-context.xml"})
 public class MyFilterTest {
 
     @Before
@@ -40,9 +40,9 @@ public class MyFilterTest {
 
     @DirtiesContext
     @Test
-    public void matches_FRA() throws Exception {
+    public void matches_ITA() throws Exception {
 
-        Exchange exchange = build("<something/>", "/FRA");
+        Exchange exchange = build("<something/>", "/ITA");
 
         resultEndpoint.expectedBodiesReceived("<something/>");
         template.send(exchange);
@@ -52,9 +52,9 @@ public class MyFilterTest {
 
     @DirtiesContext
     @Test
-    public void does_not_match_ITA() throws Exception {
+    public void does_not_match_FRA() throws Exception {
 
-        Exchange exchange = build("<something/>", "/ITA");
+        Exchange exchange = build("<something/>", "/FRA");
 
         resultEndpoint.setExpectedMessageCount(0);
         template.send(exchange);

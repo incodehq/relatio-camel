@@ -13,7 +13,7 @@
       <choice>
         <when>
           <el>
-            ${in.headers['org.incode.eurocommercial.ecpcrm.camel.webapp.Dto']['default'].atPath.startsWith("/FRA")}
+            ${in.headers['org.incode.eurocommercial.relatio.camel.webapp.Dto']['default'].atPath.startsWith("/ITA")}
           </el>
           <to uri="mock://result"/>
         </when>
