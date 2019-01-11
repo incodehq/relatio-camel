@@ -9,6 +9,7 @@
 /Users/marcus/repos/ecp/github/relatio-camel/src/main/java/org/incode/eurocommercial/relatio/camel/processor/enrich/EnrichViaRestfulObjectsAbstract.java
 /Users/marcus/repos/ecp/github/relatio-camel/src/main/java/org/incode/eurocommercial/relatio/camel/processor/util/Util.java
 /Users/marcus/repos/ecp/github/relatio-camel/src/main/java/org/incode/eurocommercial/relatio/camel/processor/util/ParamUtil.java
+/Users/marcus/repos/ecp/github/relatio-camel/src/main/java/org/incode/eurocommercial/relatio/camel/processor/enrich/FetchProfileFromUpdateAction.java
 /Users/marcus/repos/ecp/github/relatio-camel/src/main/java/org/incode/eurocommercial/relatio/camel/processor/enrich/FetchProfileFromSync.java
 /Users/marcus/repos/ecp/github/relatio-camel/src/main/java/org/incode/eurocommercial/relatio/camel/processor/ProcessorAbstract.java
 /Users/marcus/repos/ecp/github/relatio-camel/src/main/java/org/incode/eurocommercial/relatio/camel/processor/mail/MailService.java

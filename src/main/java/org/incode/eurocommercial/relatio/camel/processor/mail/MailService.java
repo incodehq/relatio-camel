@@ -55,7 +55,6 @@ public class MailService {
 
         EditMemberMethod.CreateOrUpdate method = new EditMemberMethod.CreateOrUpdate(listId, profileDto.getEmailAccount());
 
-
         method.status = status;
         method.merge_fields = new MailchimpObject();
         method.merge_fields.mapping.put("FNAME", profileDto.getFirstName());
@@ -77,7 +76,7 @@ public class MailService {
     }
 
 
-    public MemberInfo propogateProfile(ProfileDto profileDto){
+    public MemberInfo propagateProfile(ProfileDto profileDto){
         if(profileDto.isMarketingConsent()) {
             return createOrUpdate(profileDto, "af6fb1a850", "subscribed");
         }else {

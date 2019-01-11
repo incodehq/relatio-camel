@@ -13,7 +13,7 @@ public class AddProfileToMailingList extends ProcessorAbstract {
         final ProfileDto profileDto = MessageUtil.getHeader(exchange.getIn(), ProfileDto.class, "default");
 
         if (profileDto.isPrivacyConsent()) {
-            mailService.propogateProfile(profileDto);
+            mailService.propagateProfile(profileDto);
         }
     }
 
