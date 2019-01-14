@@ -37,7 +37,7 @@
                 <camel:when>
                     <camel:simple>
                         ${header.ixn[execution$memberIdentifier]} ==
-                        'org.incode.eurocommercial.relatio.dom.profile.Profile#updateToMailChimp'
+                        'org.incode.eurocommercial.relatio.dom.profile.Profile#updateToMailChimp()'
                     </camel:simple>
                     <camel:process ref="fetchProfileFromUpdateAction"/>
                     <camel:process ref="subscribeToMailChimpMailingList"/>
