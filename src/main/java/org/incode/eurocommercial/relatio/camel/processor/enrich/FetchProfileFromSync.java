@@ -37,9 +37,7 @@ public class FetchProfileFromSync extends ProcessorAbstract {
         profileDto.setLastName(lastName);
         profileDto.setDateOfBirth(dateOfBirth);
         profileDto.setApproximateDateOfBirth(approximateDateOfBirth);
-
-        //TODO: profileDto.setGender(gender);
-
+//        profileDto.setGender(gender);
         profileDto.setCellPhoneNumber(cellPhoneNumber);
         profileDto.setFacebookAccount(facebookAccount);
         profileDto.setPrivacyConsent(privacyConsent);

@@ -16,18 +16,16 @@
  */
 package org.incode.eurocommercial.relatio.camel.processor.mail;
 
-import java.io.IOException;
-
 import com.ecwid.maleorang.MailchimpClient;
 import com.ecwid.maleorang.MailchimpException;
 import com.ecwid.maleorang.MailchimpObject;
 import com.ecwid.maleorang.method.v3_0.lists.members.EditMemberMethod;
 import com.ecwid.maleorang.method.v3_0.lists.members.MemberInfo;
 import com.google.common.base.Strings;
-
+import lombok.Setter;
 import org.incode.eurocommercial.relatio.canonical.profile.v1.ProfileDto;
 
-import lombok.Setter;
+import java.io.IOException;
 
 public class MailService {
 
@@ -66,7 +64,7 @@ public class MailService {
         method.merge_fields.mapping.put("LNAME", profileDto.getLastName());
         method.merge_fields.mapping.put("DOB", nullsafeToString(profileDto.getDateOfBirth()));
         method.merge_fields.mapping.put("ADOB", nullsafeToString(profileDto.getApproximateDateOfBirth()));
-//        method.merge_fields.mapping.put("gender", profileDto.getGender().value());
+        method.merge_fields.mapping.put("GENDER", profileDto.getGender().value());
         method.merge_fields.mapping.put("CELLPH", profileDto.getCellPhoneNumber());
         method.merge_fields.mapping.put("FBACCOU", profileDto.getFacebookAccount());
         method.merge_fields.mapping.put("PRIVC", booleanToStatus(profileDto.isPrivacyConsent()));
