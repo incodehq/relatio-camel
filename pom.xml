@@ -64,7 +64,7 @@
     <properties>
         <revision>1.0.0-SNAPSHOT</revision>
 
-        <relatio-canonical.version>2.0.0-M1.20190107-1559-b7dbd7ef</relatio-canonical.version>
+        <relatio-canonical.version>2.0.0.20190416-1657-bf834673</relatio-canonical.version>
 
         <isis.version>1.17.0.20190207-2036-bccfeda5</isis.version>
 
