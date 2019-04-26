@@ -70,6 +70,8 @@ public class MailService {
         method.merge_fields.mapping.put("PRIVC", booleanToStatus(profileDto.isPrivacyConsent()));
         method.merge_fields.mapping.put("MARKETC", booleanToStatus(profileDto.isMarketingConsent()));
         method.merge_fields.mapping.put("TRDPART", booleanToStatus(profileDto.isThirdPartyConsent()));
+        method.merge_fields.mapping.put("PARENT", booleanToStatus(profileDto.isParent()));
+        method.merge_fields.mapping.put("DOGOWN", booleanToStatus(profileDto.isDogOwner()));
         method.merge_fields.mapping.put("POSTALC", nullsafeToString(profileDto.getPostalCode()));
 
         try {
