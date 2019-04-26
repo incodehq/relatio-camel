@@ -62,14 +62,14 @@
     </developers>
 
     <properties>
-        <revision>1.16.2-SNAPSHOT</revision>
+        <revision>1.0.0-SNAPSHOT</revision>
 
         <relatio-canonical.version>2.0.0.20190426-1217-99bbb816</relatio-canonical.version>
 
         <isis.version>1.17.0.20190207-2036-bccfeda5</isis.version>
 
         <!-- NB: also update the parent of this pom.  -->
-        <incode-platform.version>1.17.0.20190305-1828-b0e9bc8d</incode-platform.version>
+        <incode-platform.version>1.17.0.20190418-0755-7d3f32e7</incode-platform.version>
 
 
         <lombok.version>1.18.2</lombok.version>
@@ -336,17 +336,18 @@
 
         <!-- required to pull down parent pom (incode-parent) -->
         <profile>
-            <id>incode-work-maven</id>
+
+            <id>repo-incode-work</id>
             <activation>
                 <property>
-                    <name>!skip.incode-work-maven</name>
+                    <name>!skip.repo-incode-work</name>
                 </property>
             </activation>
             <repositories>
                 <repository>
-                    <id>incode-work-maven</id>
+                    <id>repo-incode-work</id>
                     <url>https://repo.incode.work</url>
-                    <name>Incode Work (maven)</name>
+                    <name>repo.incode.work</name>
                     <releases>
                         <enabled>true</enabled>
                         <updatePolicy>always</updatePolicy>
@@ -360,19 +361,6 @@
                     <layout>default</layout>
                 </repository>
             </repositories>
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>incode-work-maven</id>
-                    <name>Incode Work (maven)</name>
-                    <releases>
-                        <enabled>true</enabled>
-                        <updatePolicy>never</updatePolicy>
-                        <checksumPolicy>fail</checksumPolicy>
-                    </releases>
-                    <url>https://repo.incode.work</url>
-                    <layout>default</layout>
-                </pluginRepository>
-            </pluginRepositories>
         </profile>
 
         <profile>
