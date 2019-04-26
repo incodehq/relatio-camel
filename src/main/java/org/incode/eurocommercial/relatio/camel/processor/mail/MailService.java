@@ -69,6 +69,8 @@ public class MailService {
         method.merge_fields.mapping.put("FBACCOU", profileDto.getFacebookAccount());
         method.merge_fields.mapping.put("PRIVC", booleanToStatus(profileDto.isPrivacyConsent()));
         method.merge_fields.mapping.put("MARKETC", booleanToStatus(profileDto.isMarketingConsent()));
+        method.merge_fields.mapping.put("TRDPART", booleanToStatus(profileDto.isThirdPartyConsent()));
+        method.merge_fields.mapping.put("POSTALC", nullsafeToString(profileDto.getPostalCode()));
 
         try {
             return client.execute(method);
@@ -81,9 +83,9 @@ public class MailService {
 
     public MemberInfo propagateProfile(ProfileDto profileDto){
         if(profileDto.isMarketingConsent()) {
-            return createOrUpdate(profileDto, "af6fb1a850", "subscribed");
+            return createOrUpdate(profileDto, "bc219d2d3b", "subscribed");
         }else {
-            return createOrUpdate(profileDto, "af6fb1a850", "unsubscribed");
+            return createOrUpdate(profileDto, "bc219d2d3b", "unsubscribed");
         }
     }
 

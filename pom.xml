@@ -25,7 +25,7 @@
         <groupId>org.incode</groupId>
         <artifactId>incode-parent</artifactId>
         <!-- NB: also update incode-platform.version property below. -->
-        <version>1.16.2.20180710-1343-21c38b2f</version>
+        <version>1.17.0.20190418-0755-7d3f32e7</version>
         <relativePath/>
     </parent>
 
@@ -64,12 +64,12 @@
     <properties>
         <revision>1.16.2-SNAPSHOT</revision>
 
-        <relatio-canonical.version>2.0.0-M1.20190107-1559-b7dbd7ef</relatio-canonical.version>
+        <relatio-canonical.version>2.0.0.20190426-1217-99bbb816</relatio-canonical.version>
 
-        <isis.version>1.16.2.20180709-1350-5d9f4f7c</isis.version>
+        <isis.version>1.17.0.20190207-2036-bccfeda5</isis.version>
 
         <!-- NB: also update the parent of this pom.  -->
-        <incode-platform.version>1.16.2.20180710-1343-21c38b2f</incode-platform.version>
+        <incode-platform.version>1.17.0.20190305-1828-b0e9bc8d</incode-platform.version>
 
 
         <lombok.version>1.18.2</lombok.version>
@@ -336,17 +336,17 @@
 
         <!-- required to pull down parent pom (incode-parent) -->
         <profile>
-            <id>incode-cloud-maven</id>
+            <id>incode-work-maven</id>
             <activation>
                 <property>
-                    <name>!skip.incode-cloud-maven</name>
+                    <name>!skip.incode-work-maven</name>
                 </property>
             </activation>
             <repositories>
                 <repository>
-                    <id>incode-cloud-maven</id>
-                    <url>https://repo.incode.cloud/repository/maven/</url>
-                    <name>Incode Cloud (maven)</name>
+                    <id>incode-work-maven</id>
+                    <url>https://repo.incode.work</url>
+                    <name>Incode Work (maven)</name>
                     <releases>
                         <enabled>true</enabled>
                         <updatePolicy>always</updatePolicy>
@@ -362,14 +362,14 @@
             </repositories>
             <pluginRepositories>
                 <pluginRepository>
-                    <id>incode-cloud-maven</id>
-                    <name>Incode Cloud (maven)</name>
+                    <id>incode-work-maven</id>
+                    <name>Incode Work (maven)</name>
                     <releases>
                         <enabled>true</enabled>
                         <updatePolicy>never</updatePolicy>
                         <checksumPolicy>fail</checksumPolicy>
                     </releases>
-                    <url>https://repo.incode.cloud/repository/maven/</url>
+                    <url>https://repo.incode.work</url>
                     <layout>default</layout>
                 </pluginRepository>
             </pluginRepositories>
