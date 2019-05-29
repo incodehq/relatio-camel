@@ -77,7 +77,7 @@
 
         <activemq-web.version>5.14.3</activemq-web.version>
         <spring.version>4.1.9.RELEASE</spring.version>
-        <camel.version>2.16.3</camel.version>
+        <camel.version>2.24.0</camel.version>
         <jetty.version>9.4.3.v20170317</jetty.version>
 
         <maleorang.version>3.0-0.9.6</maleorang.version>
